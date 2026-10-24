@@ -1,11 +1,34 @@
-# gotcha
+# Gotcha!
 
-Casual game — development continues in this repo (migrated from Claude).
+Multiplayer iPhone-landscape browser scavenger game (Three.js). Create a room, share the URL, find your items, meet at the goal.
 
-## Import status
+## Local play
 
-| File | Purpose |
-|------|---------|
-| `import/claude/agents.json` | Claude Code **cloud agent** registry (channel IDs only; no source code or instructions) |
+Serve the repo root over HTTP (ES modules + workers need a server):
 
-To restore the full project, add a Claude.ai **Export Data** ZIP (or project knowledge files + latest game artifact) under `import/claude/` and open a follow-up in Cursor Cloud Agent.
+```bash
+npx --yes serve -l 3000
+```
+
+Open `http://localhost:3000/?net=local` in two tabs to test lobby and game without Ably.
+
+## Deploy (Vercel)
+
+1. Import GitHub repo `kumabefamily4/gotcha` in Vercel (root directory = repo root).
+2. Set environment variable **`ABLY_API_KEY`** (`appId.keyId:secret` from Ably dashboard).
+3. Optional voice relay: **`TURN_URLS`**, **`TURN_USERNAME`**, **`TURN_CREDENTIAL`** (see `api/turn.js`).
+4. Deploy. Share `https://your-app.vercel.app/?g=ROOMCODE` or use in-app share link.
+
+## Music
+
+Place optional tracks at `music/lobby.mp3` and `music/game.mp3`. If missing, the built-in synth BGM plays. Add credits in `src/credits.js` when using licensed audio.
+
+## Tests
+
+```bash
+npm test
+```
+
+## Docs
+
+Project spec and decisions: `docs/gotcha-game-project.md` (from Claude project memory).

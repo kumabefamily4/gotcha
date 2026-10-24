@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Gotcha!">
+  <meta name="theme-color" content="#a9d6f5">
+  <title>Gotcha!</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js" } }</script>
+</head>
+<body>
+  <canvas id="view"></canvas>
+
+  <!-- Title / join -->
+  <section id="home" class="screen active">
+    <div class="card">
+      <h1 class="logo">Gotcha!</h1>
+      <p class="tag">Find your items. Meet at the goal.</p>
+      <label class="field">
+        <span>Your name</span>
+        <input id="name" maxlength="14" autocomplete="nickname" placeholder="e.g. Yuki">
+      </label>
+      <button id="btn-create" class="big">Create a game</button>
+      <button id="btn-join" class="big hidden">Join game <span id="join-code"></span></button>
+      <p class="hint" id="home-hint">Turn your phone sideways and allow motion and microphone when asked.</p>
+    </div>
+  </section>
+
+  <!-- Lobby -->
+  <section id="lobby" class="screen">
+    <div class="lobby-grid">
+      <div class="card lobby-left">
+        <h2 class="logo small">Gotcha!</h2>
+        <div class="share">
+          <div class="share-label">Invite friends with this link</div>
+          <div class="share-row">
+            <input id="share-url" readonly>
+            <button id="btn-share">Share</button>
+          </div>
+        </div>
+        <div id="host-settings">
+          <div class="setting">
+            <span>Items per player</span>
+            <div class="stepper"><button data-step="items:-1">−</button><b id="items-val">4</b><button data-step="items:1">+</button></div>
+          </div>
+          <div class="setting">
+            <span>Expected players</span>
+            <div class="stepper"><button data-step="expected:-1">−</button><b id="expected-val">–</b><button data-step="expected:1">+</button></div>
+          </div>
+        </div>
+        <div id="guest-settings" class="hidden">
+          <div class="setting"><span>Items per player</span><b id="items-ro">4</b></div>
+        </div>
+        <div class="setting">
+          <span>View</span>
+          <div class="seg" id="view-mode"><button data-mode="normal">Normal</button><button data-mode="stereo">3D stereo</button></div>
+        </div>
+        <div class="setting">
+          <span>Microphone</span>
+          <button id="btn-mic-lobby" class="pill">Off</button>
+        </div>
+      </div>
+      <div class="card lobby-right">
+        <h3>Players <span id="player-count"></span></h3>
+        <ul id="player-list"></ul>
+        <button id="btn-start" class="big">Start game</button>
+        <p id="lobby-status" class="hint"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Loading -->
+  <section id="loading" class="screen">
+    <div class="card center">
+      <h2 class="logo small">Gotcha!</h2>
+      <p id="loading-text">Building the city…</p>
+      <div class="spinner"></div>
+    </div>
+  </section>
+
+  <!-- In-game HUD -->
+  <section id="hud" class="screen">
+    <div id="hud-players"></div>
+    <div id="banner"></div>
+    <div id="me-status"></div>
+    <canvas id="minimap" width="300" height="300"></canvas>
+    <div id="hud-buttons">
+      <button id="btn-mic" title="Microphone">🎙️</button>
+      <button id="btn-stereo" title="Stereo 3D">3D</button>
+      <button id="btn-recenter" title="Recenter view">⟲</button>
+      <button id="btn-music" title="Music">♪</button>
+    </div>
+    <div id="stick"><div id="knob"></div></div>
+    <button id="btn-jump" class="pad">JUMP</button>
+    <button id="btn-action" class="pad">ACTION</button>
+    <div id="countdown"></div>
+  </section>
+
+  <!-- Results -->
+  <section id="results" class="screen">
+    <div class="card center">
+      <h2 class="logo small">Gotcha!</h2>
+      <h3>Results</h3>
+      <ol id="results-list"></ol>
+      <button id="btn-again" class="big">Back to lobby</button>
+      <p class="hint" id="results-hint"></p>
+    </div>
+  </section>
+
+  <div id="rotate"><div><div class="phone"></div><p>Turn your phone sideways to play</p></div></div>
+  <div id="toast"></div>
+  <div id="audio-box" hidden></div>
+  <footer id="credits"></footer>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
