@@ -1,0 +1,26 @@
+{
+  "claude_code_cloud": [
+    {
+      "agent_id": "cagt_01Ncyr4pkzdH9KAnwe7cuweu",
+      "name": "Channel: 72384b13-f5bb-4b54-93be-7bd1e97877d1",
+      "description": null,
+      "instructions": null,
+      "instructions_withheld": false,
+      "instructions_app_text_left_out": false,
+      "created_at": "2026-10-24T06:12:32.334357Z",
+      "updated_at": "2026-10-24T06:12:41.77791Z",
+      "deleted_at": null
+    },
+    {
+      "agent_id": "cagt_011iCzpCWEgRgmx36hbzkZtf",
+      "name": "Channel: 0a5c6856-a4c6-42e4-9217-5bb0d8efb682",
+      "description": null,
+      "instructions": null,
+      "instructions_withheld": false,
+      "instructions_app_text_left_out": false,
+      "created_at": "2026-10-24T05:10:07.359108Z",
+      "updated_at": "2026-10-24T06:08:08.204921Z",
+      "deleted_at": null
+    }
+  ]
+}
